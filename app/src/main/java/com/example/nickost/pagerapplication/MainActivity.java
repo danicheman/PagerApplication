@@ -3,6 +3,7 @@ package com.example.nickost.pagerapplication;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.TabLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         myPager = new MyPager(this);
 
         binding.viewPager.setAdapter(myPager);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabDots);
+        tabLayout.setupWithViewPager(binding.viewPager, true);
+
         //get the party  started!!
         handler = new Handler();
         handler.postDelayed(runnable, delay);
