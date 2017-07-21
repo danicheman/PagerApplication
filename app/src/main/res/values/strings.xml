@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pager Application</string>
+    <string name="app_description">View pager + Swipe refresh + NestedScroll View</string>
 </resources>

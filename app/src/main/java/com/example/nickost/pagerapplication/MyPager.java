@@ -1,19 +1,32 @@
 package com.example.nickost.pagerapplication;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
- * Created by suprise on 7/13/17.
+ * Sample adapter for pager view
  */
 
-public class MyPager extends PagerAdapter {
+class MyPager extends PagerAdapter {
+    private static final String TAG = "MyPager";
+    private String[] colors = {"#EEEEEE", "#CCCCCC", "#555555"};
+    private String[] texts = {"First", "Second", "Third"};
+    private Context context;
 
+
+    MyPager(Context context) {
+
+        this.context = context;
+    }
 
     @Override
     public int getCount() {
-        return 0;
+        return colors.length;
     }
 
     @Override
@@ -23,7 +36,12 @@ public class MyPager extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        return super.instantiateItem(container, position);
+        Log.d(TAG, "instantiateItem: at position" + position);
+        TextView tv = new TextView(context);
+        tv.setText(texts[position]);
+        tv.setBackgroundColor(Color.parseColor(colors[position]));
+        container.addView(tv);
+        return tv;
     }
 
     @Override
@@ -32,6 +50,4 @@ public class MyPager extends PagerAdapter {
     }
 
 
-    public void setCurrentItem(int page, boolean b) {
-    }
 }

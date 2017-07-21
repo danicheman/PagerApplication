@@ -24,7 +24,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             } else {
                 page++;
             }
-            myPager.setCurrentItem(page, true);
+            Log.d(TAG, "run: triggering scroll view");
+            binding.viewPager.setCurrentItem(page);
+
             handler.postDelayed(this, delay);
         }
     };
@@ -34,13 +36,18 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        myPager = new MyPager();
+        myPager = new MyPager(this);
+
         binding.viewPager.setAdapter(myPager);
+        //get the party  started!!
+        handler = new Handler();
+        handler.postDelayed(runnable, delay);
     }
 
     @Override
     public void onRefresh() {
         Log.d(TAG, "onRefresh: ");
+        binding.activityMain.setRefreshing(true);
         binding.activityMain.setRefreshing(false);
     }
 }
